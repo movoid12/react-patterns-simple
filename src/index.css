@@ -7,18 +7,6 @@
     @apply font-mono text-sm bg-zinc-900 text-orange-400 p-1;
   }
 
-  h1 {
-    @apply text-3xl font-bold text-zinc-50;
-  }
-
-  h2 {
-    @apply text-2xl font-semibold text-zinc-50;
-  }
-
-  main {
-    @apply mx-auto max-w-3xl ring-1 bg-zinc-900 ring-zinc-300/20 xl:max-w-5xl min-h-screen p-10;
-  }
-
   a {
     @apply text-indigo-400 hover:text-indigo-500;
   }
@@ -29,5 +17,55 @@
 
   pre {
     @apply font-mono text-sm bg-zinc-900 text-zinc-50 p-4;
+  }
+}
+
+@layer components {
+  .swiper {
+    width: 100%;
+    height: 100%;
+  }
+
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+
+    /* Center slide text vertically */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Composition Pattern */
+  .form {
+    @apply space-y-5 mt-10;
+  }
+
+  .form-item {
+    @apply space-y-2;
+  }
+
+  .form-label {
+    @apply block text-sm font-medium text-orange-500;
+  }
+
+  .form-input {
+    @apply block w-full px-3 py-2 bg-gray-700 border outline-none ring-1 rounded-md text-white focus:ring-indigo-500 focus:border-indigo-500;
+  }
+
+  .form-message {
+    @apply text-red-500 text-sm mt-1;
+  }
+
+  .form button {
+    @apply w-full bg-indigo-500 text-white py-2 px-4 rounded-md hover:bg-indigo-600;
   }
 }
