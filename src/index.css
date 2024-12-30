@@ -54,11 +54,11 @@
   }
 
   .form-label {
-    @apply block text-sm font-medium text-orange-500;
+    @apply block text-sm font-medium;
   }
 
   .form-input {
-    @apply block w-full px-3 py-2 bg-gray-700 border outline-none ring-1 rounded-md text-white focus:ring-indigo-500 focus:border-indigo-500;
+    @apply block w-full px-3 py-2 bg-gray-700 border-2 outline-none ring-1 rounded-md text-white focus:ring-indigo-500 focus:border-indigo-500;
   }
 
   .form-message {
