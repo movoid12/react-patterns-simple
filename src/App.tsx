@@ -9,7 +9,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 
 // import required modules
-import { Navigation, Pagination, Mousewheel, Keyboard } from "swiper/modules";
+import { Navigation } from "swiper/modules";
 import ContactForm from "./components/contact-form/contact-form";
 
 export default function App() {
@@ -18,17 +18,7 @@ export default function App() {
   return (
     <div className="space-y-12">
       <div className="border-b border-gray-900/10 pb-12">
-        <Swiper
-          spaceBetween={50}
-          navigation={true}
-          pagination={true}
-          mousewheel={true}
-          keyboard={true}
-          modules={[Navigation, Pagination, Mousewheel, Keyboard]}
-          on={{
-            slideChange: () => console.log("slide changed"),
-          }}
-        >
+        <Swiper navigation spaceBetween={30} modules={[Navigation]}>
           <SwiperSlide>
             <div className=" bg-slate-200 p-12">
               <h1 className="text-2xl text-black ">Slide 1</h1>
