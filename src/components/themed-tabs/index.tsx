@@ -58,7 +58,6 @@ export default function ThemedTabs() {
   return (
     <main className="container">
       <h2 className="title">Themed Tabs</h2>
-
       <div className="compound">
         <Tabs>
           <TabsList>

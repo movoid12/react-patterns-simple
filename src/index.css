@@ -99,6 +99,31 @@
   .tab-panels {
     @apply mt-4 p-4 bg-black rounded-lg text-gray-300;
   }
+
+  /* Portal Pattern */
+  .portal-btn {
+    @apply bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded mt-10;
+  }
+
+  .portal {
+    @apply fixed inset-0 bg-gray-700 bg-opacity-50 flex justify-center items-center z-30;
+  }
+
+  .portal div {
+    @apply bg-black rounded-lg shadow-lg w-96 p-6;
+  }
+
+  .portal h2 {
+    @apply text-2xl font-semibold mb-4;
+  }
+
+  .portal p {
+    @apply text-gray-300 mb-6;
+  }
+
+  .portal button {
+    @apply bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded;
+  }
 }
 
 @layer utilities {
