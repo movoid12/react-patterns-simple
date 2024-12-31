@@ -34,13 +34,13 @@ export default function ContactForm() {
   const [formData, setFormData] = useState<FormData>({ name: "", email: "" });
   const [errors, setErrors] = useState<Errors>({});
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     const newErrors: Errors = {};
 
     if (!formData.name) newErrors.name = "Name is required.";
@@ -57,7 +57,7 @@ export default function ContactForm() {
 
   return (
     <main className="container">
-      <h2>Contact Form</h2>
+      <h2 className="title">Contact Form</h2>
 
       <Form onSubmit={handleSubmit}>
         <FormField
@@ -74,7 +74,7 @@ export default function ContactForm() {
                   onChange={handleChange}
                   className={clsx(
                     "form-input",
-                    errors.name ? "border-red-500" : "border-gray-600",
+                    errors.name ? "border-red-500" : "border-gray-600"
                   )}
                 />
               </FormControl>
@@ -95,9 +95,12 @@ export default function ContactForm() {
                   id={name}
                   value={formData.email}
                   onChange={handleChange}
+                  onBlur={(e) => {
+                    console.log(name, e.target.value);
+                  }}
                   className={clsx(
                     "form-input",
-                    errors.name ? "border-red-500" : "border-gray-600",
+                    errors.email ? "border-red-500  " : "border-gray-600"
                   )}
                 />
               </FormControl>
