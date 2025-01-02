@@ -18,32 +18,33 @@ function CurrencyCard({
 export default function CurrencyConverter() {
   const [amount, setAmount] = useState(0);
   const [rates, setRates] = useState<Rates>(null);
-  const [selectedCurrency, setSelectedCurrency] = useState("USD");
+  const [sourceCurrency, setSourceCurrency] = useState("EUR");
+  const [targetCurrency, setTargetCurrency] = useState("USD");
 
   useEffect(() => {
     const fetchRates = async () => {
       const response = await fetch(
-        "https://api.exchangerate-api.com/v4/latest/USD"
+        `https://api.exchangerate-api.com/v4/latest/${sourceCurrency}`
       );
       const data = await response.json();
       setRates(data.rates);
     };
 
     fetchRates();
-  }, []);
+  }, [sourceCurrency]);
 
   if (!rates) return <div className="spinner" />;
 
   const convertedValue =
-    selectedCurrency === "USD"
+    targetCurrency === sourceCurrency
       ? amount
-      : amount * rates[selectedCurrency as keyof Rates];
+      : amount * rates[targetCurrency as keyof Rates];
 
   const formatCurrency = (amount: number): string => {
-    if (isNaN(amount) || amount === 0) return `0.00 ${selectedCurrency}`;
+    if (isNaN(amount) || amount === 0) return `0.00 ${targetCurrency}`;
     return new Intl.NumberFormat("en-US", {
       style: "currency",
-      currency: selectedCurrency,
+      currency: targetCurrency,
       minimumFractionDigits: 2,
       maximumFractionDigits: 2,
     }).format(amount);
@@ -52,12 +53,36 @@ export default function CurrencyConverter() {
   return (
     <div className="currency-container">
       <div>
-        <p>Select currency</p>
+        <p>Select source currency</p>
+        <select
+          name="sourceCurrency"
+          id="sourceCurrency"
+          value={sourceCurrency}
+          onChange={(e) => setSourceCurrency(e.target.value)}
+          className="p-2 mb-4 text-lg border-none block w-full px-3 py-2 bg-gray-700 border outline-none ring-1 rounded-md text-white focus:ring-indigo-500 focus:border-indigo-50 cursor-pointer"
+        >
+          <option value="EUR">EUR</option>
+          <option value="USD">USD</option>
+          <option value="GBP">GBP</option>
+          <option value="JPY">JPY</option>
+          <option value="SYP">SYP</option>
+          <option value="AED">AED</option>
+        </select>
+      </div>{" "}
+      <p>Enter amount in {sourceCurrency}</p>
+      <input
+        type="number"
+        value={amount || ""}
+        onChange={(e) => setAmount(parseFloat(e.target.value))}
+        placeholder={`Enter amount in ${sourceCurrency}`}
+      />
+      <div>
+        <p>Select target currency</p>
         <select
           name="currency"
           id="currency"
-          value={selectedCurrency}
-          onChange={(e) => setSelectedCurrency(e.target.value)}
+          value={targetCurrency}
+          onChange={(e) => setTargetCurrency(e.target.value)}
           className="p-2 mb-4 text-lg border-none block w-full px-3 py-2 bg-gray-700 border outline-none ring-1 rounded-md text-white focus:ring-indigo-500 focus:border-indigo-50 cursor-pointer"
         >
           <option value="USD">USD</option>
@@ -69,17 +94,9 @@ export default function CurrencyConverter() {
           <option value="SYP">SYP</option>
         </select>
       </div>
-      <p>Enter amount in USD</p>
-      <input
-        type="number"
-        value={amount || ""}
-        onChange={(e) => setAmount(parseFloat(e.target.value))}
-        placeholder="Enter amount in USD"
-      />
-
       <CurrencyCard
         value={formatCurrency(convertedValue ?? 0)}
-        currency={selectedCurrency}
+        currency={targetCurrency}
       />
     </div>
   );
