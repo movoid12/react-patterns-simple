@@ -1,20 +1,8 @@
 import { useEffect, useState } from "react";
 import { Rates } from "./schema";
+import CurrencySelector from "./currency-selector";
+import CurrencyCard from "./currency-card";
 
-function CurrencyCard({
-  value,
-  currency,
-}: {
-  value: number | string;
-  currency: string;
-}) {
-  return (
-    <div className="currency-card">
-      <p>Amount in {currency}</p>
-      <p>{value}</p>
-    </div>
-  );
-}
 export default function CurrencyConverter() {
   const [amount, setAmount] = useState(0);
   const [rates, setRates] = useState<Rates>(null);
@@ -35,7 +23,7 @@ export default function CurrencyConverter() {
 
   if (!rates) return <div className="spinner" />;
 
-  const convertedValue =
+  const conversionResult =
     targetCurrency === sourceCurrency
       ? amount
       : amount * rates[targetCurrency as keyof Rates];
@@ -54,21 +42,12 @@ export default function CurrencyConverter() {
     <div className="currency-container">
       <div>
         <p>Select source currency</p>
-        <select
-          name="sourceCurrency"
-          id="sourceCurrency"
-          value={sourceCurrency}
-          onChange={(e) => setSourceCurrency(e.target.value)}
-          className="p-2 mb-4 text-lg border-none block w-full px-3 py-2 bg-gray-700 border outline-none ring-1 rounded-md text-white focus:ring-indigo-500 focus:border-indigo-50 cursor-pointer"
-        >
-          <option value="EUR">EUR</option>
-          <option value="USD">USD</option>
-          <option value="GBP">GBP</option>
-          <option value="JPY">JPY</option>
-          <option value="SYP">SYP</option>
-          <option value="AED">AED</option>
-        </select>
-      </div>{" "}
+        <CurrencySelector
+          selectedCurrency={sourceCurrency}
+          setSelectedCurrency={setSourceCurrency}
+          label="source-currency"
+        />
+      </div>
       <p>Enter amount in {sourceCurrency}</p>
       <input
         type="number"
@@ -78,24 +57,14 @@ export default function CurrencyConverter() {
       />
       <div>
         <p>Select target currency</p>
-        <select
-          name="currency"
-          id="currency"
-          value={targetCurrency}
-          onChange={(e) => setTargetCurrency(e.target.value)}
-          className="p-2 mb-4 text-lg border-none block w-full px-3 py-2 bg-gray-700 border outline-none ring-1 rounded-md text-white focus:ring-indigo-500 focus:border-indigo-50 cursor-pointer"
-        >
-          <option value="USD">USD</option>
-          <option value="EUR">EUR</option>
-          <option value="GBP">GBP</option>
-          <option value="JPY">JPY</option>
-          <option value="JOD">JOD</option>
-          <option value="AED">AED</option>
-          <option value="SYP">SYP</option>
-        </select>
+        <CurrencySelector
+          selectedCurrency={targetCurrency}
+          setSelectedCurrency={setTargetCurrency}
+          label="target-currency"
+        />
       </div>
       <CurrencyCard
-        value={formatCurrency(convertedValue ?? 0)}
+        value={formatCurrency(conversionResult ?? 0)}
         currency={targetCurrency}
       />
     </div>
