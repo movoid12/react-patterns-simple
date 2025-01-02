@@ -45,6 +45,32 @@
   }
 
 
+  /* Render Props Pattern */
+  .currency-card {
+    @apply bg-slate-900 text-gray-500 p-4 rounded-md shadow-md my-4;
+  }
+
+  .currency-card p:first-child {
+    @apply text-sm !mb-1;
+  }
+
+  .currency-card p:last-child {
+    @apply text-4xl text-indigo-500 font-bold;
+  }
+
+  .currency-container {
+    @apply p-6 bg-black text-white rounded-xl shadow-lg mt-10;
+  }
+
+  .currency-container p {
+    @apply mb-3 text-white;
+  }
+
+  .currency-container input {
+    @apply p-2 mb-4 text-lg border-none block w-full px-3 py-2 bg-gray-700 border outline-none ring-1 rounded-md text-white focus:ring-indigo-500 focus:border-indigo-500;
+  }
+
+
 
   /* Composition Pattern */
   .title {
@@ -129,5 +155,9 @@
 @layer utilities {
   .container {
     @apply mx-auto max-w-3xl ring-1 bg-zinc-900 ring-zinc-300/20 xl:max-w-5xl min-h-screen p-10;
+  }
+
+  .spinner {
+    @apply my-5 animate-spin inline-block size-5 border-2 border-current border-t-transparent text-indigo-600 rounded-full;
   }
 }
