@@ -10,6 +10,16 @@ export default function Modal() {
     console.log("Modal is open");
   }
 
+  const ModalContent = (
+    <div className="portal">
+      <div>
+        <h2 className="title">Modal Title</h2>
+        <p>This is a modal using Portal Pattern</p>
+        <button onClick={toggleModal}>Close</button>
+      </div>
+    </div>
+  );
+
   return (
     <main className="container">
       <h2 className="title">Modal With Portal</h2>
@@ -18,17 +28,7 @@ export default function Modal() {
         Open Modal
       </button>
 
-      {isOpen &&
-        ReactDOM.createPortal(
-          <div className="portal">
-            <div>
-              <h2 className="title">Modal Title</h2>
-              <p>This is a modal using Portal Pattern</p>
-              <button onClick={toggleModal}>Close</button>
-            </div>
-          </div>,
-          document.body
-        )}
+      {isOpen && ReactDOM.createPortal(ModalContent, document.body)}
     </main>
   );
 }
