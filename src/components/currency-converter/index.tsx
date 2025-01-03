@@ -28,20 +28,10 @@ export default function CurrencyConverter() {
       ? amount
       : amount * rates[targetCurrency as keyof Rates];
 
-  const formatCurrency = (amount: number): string => {
-    if (isNaN(amount) || amount === 0) return `0.00 ${targetCurrency}`;
-    return new Intl.NumberFormat("en-US", {
-      style: "currency",
-      currency: targetCurrency,
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    }).format(amount);
-  };
-
   return (
     <div className="currency-container">
       <div>
-        <p>Select source currency</p>
+        <p>From:</p>
         <CurrencySelector
           selectedCurrency={sourceCurrency}
           setSelectedCurrency={setSourceCurrency}
@@ -56,7 +46,7 @@ export default function CurrencyConverter() {
         placeholder={`Enter amount in ${sourceCurrency}`}
       />
       <div>
-        <p>Select target currency</p>
+        <p>To:</p>
         <CurrencySelector
           selectedCurrency={targetCurrency}
           setSelectedCurrency={setTargetCurrency}
@@ -64,8 +54,10 @@ export default function CurrencyConverter() {
         />
       </div>
       <CurrencyCard
-        value={formatCurrency(conversionResult ?? 0)}
-        currency={targetCurrency}
+        value={conversionResult}
+        targetCurrency={targetCurrency}
+        sourceCurrency={sourceCurrency}
+        amount={amount}
       />
     </div>
   );
