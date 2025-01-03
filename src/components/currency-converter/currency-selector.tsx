@@ -12,6 +12,7 @@ export default function CurrencySelector({
     "EUR",
     "GBP",
     "JPY",
+    "JOD",
     "SYP",
     "AED",
     "CHF",
