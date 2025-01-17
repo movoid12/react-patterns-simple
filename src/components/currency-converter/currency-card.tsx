@@ -1,11 +1,11 @@
 export default function CurrencyCard({
   amount,
-  value,
+  result,
   targetCurrency,
   sourceCurrency,
 }: {
   amount: number;
-  value: number;
+  result: number;
   targetCurrency: string;
   sourceCurrency: string;
 }) {
@@ -22,14 +22,14 @@ export default function CurrencyCard({
   const currencyRate = (amount: number) => {
     if (isNaN(amount) || amount === 0) return "0.00";
 
-    const rateValue = value / amount;
+    const rate = result / amount;
 
     return new Intl.NumberFormat("en-US", {
       style: "currency",
       currency: targetCurrency,
       minimumFractionDigits: 2,
       maximumFractionDigits: 2,
-    }).format(rateValue);
+    }).format(rate);
   };
 
   return (
@@ -42,7 +42,7 @@ export default function CurrencyCard({
       </div>
       <div className="currency-card">
         <p>Amount in {targetCurrency}</p>
-        <p>{formatCurrency(value)}</p>
+        <p>{formatCurrency(result)}</p>
       </div>
     </>
   );
