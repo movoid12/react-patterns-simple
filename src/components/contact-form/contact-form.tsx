@@ -74,7 +74,7 @@ export default function ContactForm() {
                   onChange={handleChange}
                   className={clsx(
                     "form-input",
-                    errors.name ? "border-red-500" : "border-gray-600"
+                    errors.name ? "border-red-500" : "border-gray-600",
                   )}
                 />
               </FormControl>
@@ -100,7 +100,7 @@ export default function ContactForm() {
                   }}
                   className={clsx(
                     "form-input",
-                    errors.email ? "border-red-500  " : "border-gray-600"
+                    errors.email ? "border-red-500  " : "border-gray-600",
                   )}
                 />
               </FormControl>
