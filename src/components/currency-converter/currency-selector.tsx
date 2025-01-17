@@ -25,7 +25,7 @@ export default function CurrencySelector({
       id={label}
       value={selectedCurrency}
       onChange={(e) => setSelectedCurrency(e.target.value)}
-      className="p-2 mb-4 text-lg border-none block w-full px-3 py-2 bg-gray-700 border outline-none ring-1 rounded-md text-white focus:ring-indigo-500 focus:border-indigo-50 cursor-pointer"
+      className="form-select"
     >
       {availableCurrencies.map((currency) => (
         <option key={currency} value={currency}>

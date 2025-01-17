@@ -90,6 +90,10 @@
     @apply block w-full px-3 py-2 bg-gray-700 border-2 outline-none ring-1 rounded-md text-white focus:ring-indigo-500 focus:border-indigo-500;
   }
 
+  .form-select {
+    @apply p-2 mb-4 text-lg border-none block w-full px-3 py-2 bg-gray-700 border outline-none ring-1 rounded-md text-white focus:ring-indigo-500 focus:border-indigo-50 cursor-pointer;
+  }
+
   .form-message {
     @apply text-red-500 text-sm mt-1;
   }
