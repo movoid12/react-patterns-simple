@@ -33,7 +33,7 @@ function Tab({ index, children }: { index: number; children: ReactNode }) {
       onClick={() => setActiveTab(index)}
       className={clsx(
         "tab",
-        index === activeTab ? "tab-active" : "tab-inactive"
+        index === activeTab ? "tab-active" : "tab-inactive",
       )}
     >
       {children}

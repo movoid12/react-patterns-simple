@@ -12,7 +12,7 @@ export default function CurrencyConverter() {
   useEffect(() => {
     const fetchRates = async () => {
       const response = await fetch(
-        `https://api.exchangerate-api.com/v4/latest/${sourceCurrency}`
+        `https://api.exchangerate-api.com/v4/latest/${sourceCurrency}`,
       );
       const data = await response.json();
       setRates(data.rates);
@@ -54,7 +54,7 @@ export default function CurrencyConverter() {
         />
       </div>
       <CurrencyCard
-        value={conversionResult}
+        result={conversionResult}
         targetCurrency={targetCurrency}
         sourceCurrency={sourceCurrency}
         amount={amount}
